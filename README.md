@@ -1,5 +1,7 @@
 # Commit Hooks – Detailed Documentation
 
+![commit hook](https://github.com/user-attachments/assets/72fb696e-b86f-4744-9cfe-cfb31ebb0f97)
+
 ---
 
 ## Author Information
@@ -12,16 +14,20 @@
 
 ---
 
-## Table of Contents
-- [Introduction](#introduction)
-- [Purpose of Commit Hooks](#purpose-of-commit-hooks)
-- [Types of Commit Hooks](#types-of-commit-hooks)
-  - [Client-side Hooks](#1-client-side-hooks)
-  - [Server-side Hooks](#2-server-side-hooks)
-- [How to Use Git Hooks](#how-to-use-git-hooks)
-- [FAQ](#faq)
-- [Contact Information](#contact-information)
-- [References](#references)
+<details>
+  <summary><strong>Table of Contents</strong></summary>
+
+- [Introduction](#introduction)  
+- [Purpose of Commit Hooks](#purpose-of-commit-hooks)  
+- [Types of Commit Hooks](#types-of-commit-hooks)  
+  - [Client-side Hooks](#1-client-side-hooks)  
+  - [Server-side Hooks](#2-server-side-hooks)  
+- [How to Use Git Hooks](#how-to-use-git-hooks)  
+- [FAQ](#faq)  
+- [Contact Information](#contact-information)  
+- [References](#references)  
+
+</details>
 
 ---
 
