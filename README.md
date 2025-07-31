@@ -48,7 +48,7 @@ Commit hooks (also known as Git hooks) are scripts that run automatically at cer
 
 ## Types of Commit Hooks
 
-Git provides two types of hooks:
+Git hooks are categorized based on where and when they execute in the workflow. These are broadly divided into:
 
 ### 1. Client-side Hooks
 Executed on the developer's machine. Used to:
@@ -86,12 +86,18 @@ Run on the remote Git server. Used to:
 
 ## How to Use Git Hooks
 
-1. Navigate to your Git project’s `.git/hooks` directory:
+Git hooks are scripts that run automatically on specific Git events (like commit, push, or merge). They allow you to enforce rules or run automated checks in your workflow.
+
+---
+
+### Step-by-Step Guide
+
+1. Go to your Git project’s `.git/hooks` directory:
    ```bash
    cd your-repo/.git/hooks
    ```
 
-2. Copy and rename a sample hook:
+2. Copy and rename a sample hook (e.g., pre-commit):
    ```bash
    cp pre-commit.sample pre-commit
    ```
@@ -101,7 +107,7 @@ Run on the remote Git server. Used to:
    nano pre-commit
    ```
 
-4. Add your script (e.g., run tests or format check), then save.
+4. Add your script logic (e.g., run tests, lint checks), then save.
 
 5. Make it executable:
    ```bash
@@ -110,12 +116,51 @@ Run on the remote Git server. Used to:
 
 6. Test it by making a commit:
    ```bash
-   git commit -m "Test hook"
+   git commit -m "Testing hook"
    ```
 
-> You can also use tools like **Husky (for JavaScript projects)** or **Lefthook** for cross-language hook management.
+---
+
+### How It Works
+
+When you perform a Git action like `commit`, Git automatically checks the `.git/hooks/` folder for a matching hook script (like `pre-commit` or `commit-msg`).
+
+- If the hook file **exists** and is **executable**, Git runs it.
+- If the script returns:
+  - `0` → Git continues the action (e.g., commit proceeds).
+  - non-zero → Git stops and displays an error or warning.
+
+This ensures that automated rules (like linting or commit message validation) are enforced **before** changes are committed.
 
 ---
+
+### Example: Block Empty Commit Messages
+
+1. Create the hook:
+   ```bash
+   nano .git/hooks/commit-msg
+   ```
+
+2. Add this script:
+   ```bash
+   #!/bin/bash
+   if [ -z "$(cat "$1")" ]; then
+     echo "Error: Commit message cannot be empty."
+     exit 1
+   fi
+   ```
+
+3. Make it executable:
+   ```bash
+   chmod +x .git/hooks/commit-msg
+   ```
+
+4. Try:
+   ```bash
+   git commit -m ""
+   # This will be blocked with an error message
+   ```
+
 
 ## FAQ
 
